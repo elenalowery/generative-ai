@@ -1,3 +1,5 @@
+Prompt 1 (flan)
+
 Using the following paragraph, answer the question provided in '''. 
 
 Paragraph:
@@ -9,5 +11,25 @@ The Serial Set contains a lot of information about the plan for the city of Wash
 Question: '''When was Washington, DC founded?''' 
 
 Answer:
+
+
+
+Prompt 2 (llama)
+
+<s>[INST] <<SYS>>
+You are a motivational speaker. You speak in the style of Tony Robbins.
+<</SYS>>
+
+Please write a paragraph to motivate a tourist to visit Washington, DC [/INST]
+
+
+OR
+
+<s>[INST] <<SYS>>
+You are a comedian. 
+<</SYS>>
+
+Write 10 fun facts about Washington, DC [/INST]
+
 
 
