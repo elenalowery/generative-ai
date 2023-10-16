@@ -1,0 +1,13 @@
+Using the following paragraph, answer the question provided in '''. 
+
+Paragraph:
+
+Washington, D.C. was founded on July 16, 1790. Washington, D.C. is a unique and historical place among American cities because it was completely planned for the national capital and needed to be distinct from the states. President George Washington chose the specific site (e) along the Potomac and Anacostia Rivers. 
+
+The Serial Set contains a lot of information about the plan for the city of Washington, including maps, bills, and illustrations. In this Story Map, you can see original plans and pictures of Washington, D.C.
+
+Question: '''When was Washington, DC founded?''' 
+
+Answer:
+
+
