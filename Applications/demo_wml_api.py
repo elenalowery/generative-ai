@@ -3,14 +3,21 @@ author: Elena Lowery
 
 This code sample shows how to invoke Large Language Models (LLMs) deployed in watsonx.ai.
 Documentation: https://ibm.github.io/watson-machine-learning-sdk/foundation_models.html
-You will need to provide your IBM Cloud API key and a watonx.ai project id (any project)
-for accessing watsonx.ai
+You will need to provide your IBM Cloud API key and a watonx.ai project id  (any project)
+for accessing watsonx.ai in a .env file
 This example shows simple use cases without comprehensive prompt tuning
 """
 
 # Install the wml api your Python env prior to running this example:
 # pip install ibm-watson-machine-learning
 # pip install ibm-cloud-sdk-core
+
+# In non-Anaconda Python environments, you may also need to install dotenv
+# pip install python-dotenv
+
+# For reading credentials from the .env file
+import os
+from dotenv import load_dotenv
 
 # WML python SDK
 from ibm_watson_machine_learning.foundation_models import Model
@@ -28,14 +35,20 @@ from ibm_cloud_sdk_core import IAMTokenManager
 # URL of the hosted LLMs is hardcoded because at this time all LLMs share the same endpoint
 url = "https://us-south.ml.cloud.ibm.com"
 
-# Replace with your watsonx project id (look up in the project Manage tab)
+# These global variables will be updated in get_credentials() functions
 watsonx_project_id = ""
 # Replace with your IBM Cloud key
 api_key = ""
 
+def get_credentials():
+
+    load_dotenv()
+
+    # Update the global variables that will be used for authentication in another function
+    globals()["api_key"] = os.getenv("api_key", None)
+    globals()["watsonx_project_id"] = os.getenv("project_id", None)
 
 # The get_model function creates an LLM model object with the specified parameters
-
 def get_model(model_type,max_tokens,min_tokens,decoding,temperature):
 
     generate_params = {
@@ -185,6 +198,9 @@ def get_auth_token():
     return access_token
 
 def demo_LLM_invocation():
+
+    # Load the api key and project id
+    get_credentials()
 
     # Show examples of 2 use cases/prompts
     answer_questions()

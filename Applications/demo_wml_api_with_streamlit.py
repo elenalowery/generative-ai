@@ -12,6 +12,13 @@ This example shows a simple generation or Q&A use case without comprehensive pro
 # pip install ibm-watson-machine-learning
 # pip install streamlit
 
+# In non-Anaconda Python environments, you may also need to install dotenv
+# pip install python-dotenv
+
+# For reading credentials from the .env file
+import os
+from dotenv import load_dotenv
+
 import streamlit as st
 
 from ibm_watson_machine_learning.foundation_models import Model
@@ -25,13 +32,22 @@ from ibm_watson_machine_learning.foundation_models.utils.enums import ModelTypes
 # URL of the hosted LLMs is hardcoded because at this time all LLMs share the same endpoint
 url = "https://us-south.ml.cloud.ibm.com"
 
-# Replace with your watsonx project id (look up in the project Manage tab)
+# These global variables will be updated in get_credentials() functions
 watsonx_project_id = ""
 # Replace with your IBM Cloud key
 api_key = ""
 
-# The get_model function creates an LLM model object with the specified parameters
+def get_credentials():
 
+    load_dotenv()
+
+    # Update the global variables that will be used for authentication in another function
+    globals()["api_key"] = os.getenv("api_key", None)
+    globals()["watsonx_project_id"] = os.getenv("project_id", None)
+
+    print("*** Got credentials***")
+
+# The get_model function creates an LLM model object with the specified parameters
 def get_model(model_type,max_tokens,min_tokens,decoding,stop_sequences):
 
     generate_params = {
@@ -71,7 +87,8 @@ def get_prompt(question):
 
 def answer_questions():
 
-
+    # Set the api key and project id global variables
+    get_credentials()
 
     # Web app UI - title and input box for the question
     st.title('🌠Test watsonx.ai LLM')
